@@ -11,6 +11,8 @@
   <modules>
     <module>microcloud-consul-8501</module>
     <module>microcloud-customer-80</module>
+      <module>microcloud-service</module>
+    <module>microcloud-consul-8502</module>
   </modules>
 
   <name>microcloud</name>
@@ -41,6 +43,12 @@
           <version>2.1.4.RELEASE</version>
           <type>pom</type>
           <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microcloud</groupId>
+            <artifactId>microcloud-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
       </dependencies>

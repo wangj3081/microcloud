@@ -9,12 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>microcloud-customer-80</artifactId>
-
-    <name>microcloud-customer-80</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
-
+    <artifactId>microcloud-consul-8502</artifactId>
+    <name>microcloud-consul-8502</name>
 
     <dependencies>
         <dependency>
@@ -37,30 +33,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!--consul 引用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
-        <!--openfeign 引用-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <!--ribbon
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-        </dependency>-->
-
-        <dependency>
-            <groupId>com.microcloud</groupId>
-            <artifactId>microcloud-service</artifactId>
-        </dependency>
     </dependencies>
 
-    <build>
-
-    </build>
 </project>
