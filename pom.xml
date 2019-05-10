@@ -13,6 +13,7 @@
     <module>microcloud-customer-80</module>
       <module>microcloud-service</module>
     <module>microcloud-consul-8502</module>
+      <module>microcloud-dashboard-hystrix-9001</module>
   </modules>
 
   <name>microcloud</name>

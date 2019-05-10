@@ -1,6 +1,9 @@
 server:
   port: 8501
+
 spring:
+  application:
+      name: microcloud-consul
   cloud:
     consul:
       host: 127.0.0.1
@@ -14,6 +17,14 @@ spring:
         service-name: ${spring.application.name} # 注册的服务名称
         prefer-ip-address: true # 是否使用指定IP地址，默认为 false
         ip-address: 127.0.0.1 # 指定 IP 地址
+# actuator 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # actuator2.0 版本之后默认只暴露 info 与 health，使用 * 为暴露所有
+      basePath: '/manager' # 监控请求地址前缀,默认为 /actuator
 
-  application:
-    name: microcloud-consul
+info:
+  app.name: ${spring.application.name}
+  app.version: 1.0
