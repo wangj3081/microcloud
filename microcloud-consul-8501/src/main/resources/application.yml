@@ -8,15 +8,19 @@ spring:
     consul:
       host: 127.0.0.1
       port: 8500
+      enabled: true
       discovery:
         tags: version=1.0,author=code
-        health-check-path: /info # 为健康检查的url,由consul定时调用一次判断服务是否可用
+        health-check-path: /consul/info # 为健康检查的url,由consul定时调用一次判断服务是否可用
         health-check-interval: 5s # 检查间隔时间
         register-health-check: false # 不做健康检查
-        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
-        service-name: ${spring.application.name} # 注册的服务名称
+#        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
+        instance-id: ${spring.application.name}:${server.port} # 注册的服务ID
+        service-name: ${spring.application.name}:2222 # 注册的服务名称
         prefer-ip-address: true # 是否使用指定IP地址，默认为 false
         ip-address: 127.0.0.1 # 指定 IP 地址
+        deregister: true
+
 # actuator 配置
 management:
   endpoints:

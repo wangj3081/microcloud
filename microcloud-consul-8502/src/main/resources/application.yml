@@ -1,20 +1,33 @@
 server:
   port: 8512
 spring:
+  application:
+      name: microcloud-consul
   cloud:
     consul:
       host: 127.0.0.1
       port: 8500
       discovery:
         tags: version=1.0,author=code
-        health-check-path: /info # 为健康检查的url,由consul定时调用一次判断服务是否可用
+        health-check-path: /manager/health # 为健康检查的url,由consul定时调用一次判断服务是否可用
         health-check-interval: 5s # 检查间隔时间
-        register-health-check: false # 不做健康检查
-        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
+        register-health-check: true # 做健康检查
+#        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
+        instance-id: ${spring.application.name}:${server.port} # 注册的服务ID
         service-name: microcloud-consul # 注册的服务名称
         prefer-ip-address: true # 是否使用指定IP地址，默认为 false
         ip-address: 127.0.0.1 # 指定 IP 地址
 
+# actuator 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # actuator2.0 版本之后默认只暴露 info 与 health，使用 * 为暴露所有
+      basePath: '/manager' # 监控请求地址前缀,默认为 /actuator
 
-  application:
-    name: microcloud-consul
+info:
+  app.name: ${spring.application.name}
+  app.version: 1.0
+
+
