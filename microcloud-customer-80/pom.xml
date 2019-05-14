@@ -12,9 +12,7 @@
     <artifactId>microcloud-customer-80</artifactId>
 
     <name>microcloud-customer-80</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
-
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -61,6 +59,26 @@
     </dependencies>
 
     <build>
-
+        <finalName>microcloud-customer-80</finalName>
+        <filters>
+            <filter>src/main/resources/application.yml</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!--打war包-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

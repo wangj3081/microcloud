@@ -1,100 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.microcloud</groupId>
-  <artifactId>microcloud</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>microcloud-consul-8501</module>
-    <module>microcloud-customer-80</module>
-      <module>microcloud-service</module>
-    <module>microcloud-consul-8502</module>
-      <module>microcloud-dashboard-hystrix-9001</module>
-    <module>microcloud-hystrix-turbine-9101</module>
-  </modules>
+    <groupId>com.microcloud</groupId>
+    <artifactId>microcloud</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>microcloud-consul-8501</module>
+        <module>microcloud-customer-80</module>
+        <module>microcloud-service</module>
+        <module>microcloud-consul-8502</module>
+        <module>microcloud-dashboard-hystrix-9001</module>
+        <module>microcloud-hystrix-turbine-9101</module>
+    </modules>
 
-  <name>microcloud</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+    <name>microcloud</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <jdk.version>1.8</jdk.version>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <jdk.version>1.8</jdk.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+    </properties>
 
-  <dependencyManagement>
-      <dependencies>
-        <!--cloud父pom引用-->
-        <dependency>
-          <groupId>org.springframework.cloud</groupId>
-          <artifactId>spring-cloud-dependencies</artifactId>
-          <version>Greenwich.RELEASE</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
-        <!--支持cloud-->
-        <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-dependencies</artifactId>
-          <version>2.1.4.RELEASE</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!--cloud父pom引用-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--支持cloud-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-        <dependency>
-            <groupId>com.microcloud</groupId>
-            <artifactId>microcloud-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+            <dependency>
+                <groupId>com.microcloud</groupId>
+                <artifactId>microcloud-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-      </dependencies>
-  </dependencyManagement>
 
+    <build>
+        <finalName>microcloud</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${jdk.version}</source> <!--源码的JDK版本-->
+                        <target>${jdk.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
 
-  <build>
-    <finalName>microcloud</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${jdk.version}</source> <!--源码的JDK版本-->
-          <target>${jdk.version}</target>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <!--<version>${spring-boot.version}</version>-->
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <!--资源文件打包管理-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
 
-    <!--资源文件打包管理-->
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <includes>
-          <include>**/*.properties</include>
-          <include>**/*.yml</include>
-          <include>**/*.xml</include>
-          <include>**/*.tld</include>
-        </includes>
-        <filtering>true</filtering>
-      </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
-      <resource>
-        <directory>src/main/java</directory>
-        <includes>
-          <include>**/*.properties</include>
-          <include>**/*.yml</include>
-          <include>**/*.xml</include>
-          <include>**/*.tld</include>
-        </includes>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-
-  </build>
+    </build>
 </project>
