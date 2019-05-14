@@ -15,6 +15,7 @@
         <module>microcloud-consul-8502</module>
         <module>microcloud-dashboard-hystrix-9001</module>
         <module>microcloud-hystrix-turbine-9101</module>
+        <module>microcloud-gateway-9501</module>
     </modules>
 
     <name>microcloud</name>

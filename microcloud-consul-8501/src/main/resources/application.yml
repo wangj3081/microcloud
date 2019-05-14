@@ -16,7 +16,7 @@ spring:
         register-health-check: false # 不做健康检查
 #        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
         instance-id: ${spring.application.name}:${server.port} # 注册的服务ID
-        service-name: ${spring.application.name}:2222 # 注册的服务名称
+        service-name: ${spring.application.name} # 注册的服务名称
         prefer-ip-address: true # 是否使用指定IP地址，默认为 false
         ip-address: 127.0.0.1 # 指定 IP 地址
         deregister: true

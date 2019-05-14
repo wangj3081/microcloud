@@ -1,0 +1,13 @@
+server:
+  port: 9501
+spring:
+  application:
+    name: microcloud-zuul
+  cloud:
+    gateway:
+      enabled: true
+      routes:
+        - id: microcloud-1
+          uri: http://localhost:8501
+          predicates:
+           - Path=/**
