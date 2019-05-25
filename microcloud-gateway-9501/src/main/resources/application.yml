@@ -2,7 +2,7 @@ server:
   port: 9501
 spring:
   application:
-    name: microcloud-zuul
+    name: microcloud-gateway
   cloud:
     gateway:
       enabled: true
@@ -10,4 +10,9 @@ spring:
         - id: microcloud-1
           uri: http://localhost:8501
           predicates:
-           - Path=/**
+           - Path=/**  # 代理该服务中的所有访问路径
+  zipkin:
+    base-url: http://localhost:8601
+  sleuth:
+    sampler:
+      probability: 1.0 # 定义抽样比例， 默认为 0.1

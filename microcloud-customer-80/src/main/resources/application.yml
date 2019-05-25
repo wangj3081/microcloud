@@ -9,6 +9,11 @@ spring:
       port: 8500
       discovery:
         register: false # 不注册到 consul 中
+  zipkin:  # zipkin 配置
+    base-url: http://localhost:8601
+  sleuth:
+    sampler:
+      probability: 1.0 # 定义抽样比例， 默认为 0.1
 # feign 基本配置
 feign:
   client:
@@ -17,6 +22,5 @@ feign:
         connectTimeout: 5000 # 连接超时时间，单位(毫秒)
         readTimeout: 5000 # 获取服务返回结果超时时间，单位(毫秒)
         loggerLevel: full # feign 的Http日志级别,full 为打印所有请求日志
-
 
 
