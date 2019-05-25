@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsulController {
 
     @GetMapping(value = "/echo")
-    @HystrixCommand(fallbackMethod = "")
+    @HystrixCommand(fallbackMethod = "echoFallback")
     public String echo(String message) {
         if (StringUtils.isBlank(message)) {
             throw new NullPointerException("传入的参数不能为空");
@@ -30,6 +30,6 @@ public class ConsulController {
      */
     @GetMapping(value = "/info")
     public String info() {
-        return "info";
+        return "info2222";
     }
 }

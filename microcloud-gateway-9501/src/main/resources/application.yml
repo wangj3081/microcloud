@@ -6,13 +6,48 @@ spring:
   cloud:
     gateway:
       enabled: true
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true
       routes:
         - id: microcloud-1
-          uri: http://localhost:8501
+          uri: lb://microcloud-consul
           predicates:
-           - Path=/**  # 代理该服务中的所有访问路径
+           - Path=/** # 代理该服务中的所有访问路径
+       # - id: microcloud-2
+       #   uri: http://localhost:8512
+       #   predicates:
+        #   - Path=/**  # 代理该服务中的所有访问路径
+      discovery:
+        locator:
+          lower-case-service-id: true # 忽略大小寫
+          enabled: true # 路由定义定位器
+    consul: # consul 配置
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        tags: version=1.0,author=code
+        register-health-check: true  # 健康檢查, 貌似必須要有，不然只能調用一次
+        health-check-interval: 10s  # 检查间隔时间
+        health-check-path: /manager/health # 为健康检查的url,由consul定时调用一次判断服务是否可用
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}:${server.port}
+        prefer-ip-address: true
+        ip-address: 127.0.0.1
+
   zipkin:
-    base-url: http://localhost:8601
+      base-url: http://localhost:8601
   sleuth:
-    sampler:
-      probability: 1.0 # 定义抽样比例， 默认为 0.1
+      sampler:
+        probability: 1.0 # 定义抽样比例， 默认为 0.1
+# actuator 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # actuator2.0 版本之后默认只暴露 info 与 health，使用 * 为暴露所有
+      basePath: '/manager' # 监控请求地址前缀,默认为 /actuator
+
+info:
+  app.name: ${spring.application.name}
+  app.version: 1.0

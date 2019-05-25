@@ -5,7 +5,7 @@ spring:
     name: customer
   cloud:
     consul:
-      host: 127.0.0.1
+      host: localhost
       port: 8500
       discovery:
         register: false # 不注册到 consul 中

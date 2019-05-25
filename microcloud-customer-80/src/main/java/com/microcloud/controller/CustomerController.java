@@ -33,7 +33,8 @@ public class CustomerController {
 
     @GetMapping(value = "/info")
     public String getInfo(String echo) {
-        String serviceName = "microcloud-consul";
+       // String serviceName = "microcloud-consul";
+        String serviceName = "microcloud-gateway";
         ServiceInstance choose = balancerClient.choose(serviceName);
         System.out.println("" + choose.getHost() + " : " + choose.getPort() + " : " + choose.getUri() + " : " + choose.getServiceId());
         URI chooseUri = choose.getUri();

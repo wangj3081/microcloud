@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 添加 feign 接口
  * @Auther: wangjian
  */
-@FeignClient(value = "microcloud-consul") // value 中的内容为注册在consul中的服务名
+//@FeignClient(value = "microcloud-consul") // value 中的内容为注册在consul中的服务名
+@FeignClient(value = "microcloud-gateway") // value 中的内容为注册在consul中的服务名
 public interface IConsulService {
 
     @RequestMapping(value = "/echo", method = RequestMethod.GET)
