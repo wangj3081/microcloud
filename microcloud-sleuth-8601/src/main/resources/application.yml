@@ -1,0 +1,14 @@
+server:
+  port: 8601
+
+spring:
+  application:
+    name: microcloud-zipkin-server
+  http:
+    encoding:
+      enabled: false # 取消注册，与 zipkin2 中的 ZipkinUiAutoConfiguration 有冲突
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false # 默认为 true, 会出现异常 「containing tag keys [method, status, uri]. The meter you are attempting to register has keys [exception, method, outcome, status, uri].」

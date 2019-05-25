@@ -17,5 +17,10 @@
            <groupId>org.springframework.cloud</groupId>
            <artifactId>spring-cloud-starter-openfeign</artifactId>
        </dependency>
+        <!--zipkin 链路追踪使用-->
+       <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-starter-zipkin</artifactId>
+       </dependency>
    </dependencies>
 </project>

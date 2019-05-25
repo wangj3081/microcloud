@@ -20,6 +20,11 @@ spring:
         prefer-ip-address: true # 是否使用指定IP地址，默认为 false
         ip-address: 127.0.0.1 # 指定 IP 地址
         deregister: true
+  zipkin:
+    base-url: http://localhost:8601 # 所有的数据提交到此服务智障
+  sleuth:
+    sampler:
+      probability: 1.0  # 定义抽样比率，默认为 0.1
 
 # actuator 配置
 management:
