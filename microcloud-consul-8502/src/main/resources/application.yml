@@ -5,7 +5,7 @@ spring:
       name: microcloud-consul
   zipkin:  # zipkin 配置
       base-url: http://localhost:8601
-    sleuth:
+  sleuth:
       sampler:
         probability: 1.0 # 定义抽样比例， 默认为 0.1
   cloud:
