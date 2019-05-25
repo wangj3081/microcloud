@@ -82,7 +82,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.microcloud.Application</mainClass>
+                    <mainClass>com.microcloud.StartConsulMain_8501</mainClass>
                 </configuration>
                 <executions>
                     <execution>
