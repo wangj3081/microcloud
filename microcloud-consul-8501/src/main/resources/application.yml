@@ -11,7 +11,7 @@ spring:
       enabled: true
       discovery:
         tags: version=1.0,author=code
-        health-check-path: /consul/info # 为健康检查的url,由consul定时调用一次判断服务是否可用
+        health-check-path: /manager/info # 为健康检查的url,由consul定时调用一次判断服务是否可用
         health-check-interval: 5s # 检查间隔时间
         register-health-check: false # 不做健康检查
 #        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
