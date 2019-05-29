@@ -56,6 +56,12 @@
             <groupId>com.microcloud</groupId>
             <artifactId>microcloud-service</artifactId>
         </dependency>
+
+        <!--引入 ribbit 配合使用 zipkin -->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
