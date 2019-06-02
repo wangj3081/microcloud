@@ -7,22 +7,6 @@ spring:
   http:
     encoding:
       enabled: false # 取消注册，与 zipkin2 中的 ZipkinUiAutoConfiguration 有冲突
-  zipkin: # zipkin 配置
-    sender:
-      type: rabbit
-  rabbitmq: # rabbitmq 配置
-    host: 192.168.158.134
-    port: 5672
-    username: admin
-    password: rabbit
-    listener: # 配置重试策略
-      direct:
-        retry:
-          enabled: true
-      simple:
-        retry:
-          enabled: true
-    virtual-host: /
 management:
   metrics:
     web:

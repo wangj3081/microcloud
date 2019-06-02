@@ -28,11 +28,15 @@ spring:
   sleuth:
     sampler:
       probability: 1.0  # 定义抽样比率 100% 进行比例抽样，默认为 0.1
+    messaging:
+        rabbit:
+          enabled: true
   rabbitmq: # rabbitmq 配置
-    host: 192.168.158.134
+    host: 192.168.134.130
     port: 5672
     username: admin
     password: rabbit
+    virtual-host: /
     listener: # 配置重试策略
       direct:
         retry:
@@ -40,6 +44,7 @@ spring:
       simple:
         retry:
           enabled: true
+
 
 # actuator 配置
 management:

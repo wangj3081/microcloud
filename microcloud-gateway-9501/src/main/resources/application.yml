@@ -27,8 +27,8 @@ spring:
       port: 8500
       discovery:
         tags: version=1.0,author=code
-        register-health-check: true  # 健康檢查, 貌似必須要有，不然只能調用一次
-        health-check-interval: 5s  # 检查间隔时间
+        register-health-check: false  # 健康檢查, 貌似必須要有，不然只能調用一次
+        health-check-interval: 25s  # 检查间隔时间
         health-check-path: /manager/health # 为健康检查的url,由consul定时调用一次判断服务是否可用
         service-name: ${spring.application.name}
         instance-id: ${spring.application.name}:${server.port}
@@ -36,10 +36,28 @@ spring:
         ip-address: 127.0.0.1
 
   zipkin:
-      base-url: http://localhost:8601
+#      base-url: http://localhost:8601
+      sender:
+        type: rabbit
   sleuth:
       sampler:
-        probability: 1.0 # 定义抽样比例， 默认为 0.1
+        probability: 1.0 # 定义抽样比例为 100%(每次请求都采集)， 默认为 0.1 即 10%
+      messaging:
+        rabbit:
+          enabled: true # 通过 rabbitMQ 传递数据
+  rabbitmq: # rabbitmq 配置
+      host: 192.168.134.130
+      port: 5672
+      username: admin
+      password: rabbit
+      virtual-host: /
+      listener: # 配置重试策略
+        direct:
+          retry:
+            enabled: true
+        simple:
+          retry:
+            enabled: true
 # actuator 配置
 management:
   endpoints:

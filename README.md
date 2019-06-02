@@ -13,4 +13,4 @@ Spring Cloud集成组件
 - turbine
   将多个 hystrix 的接口应用集成在一起监控，通过 dashbord 来做可视化
 展示
-- zipkin 服务链路跟踪(待完善)
+- zipkin 服务链路跟踪(使用官方服务版本已完成)
