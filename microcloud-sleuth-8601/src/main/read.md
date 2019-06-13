@@ -7,18 +7,31 @@
 - 启动使用
 
   打好 Jar 包，建好所需库表后，执行类似如下命令即可
-
+  
+- ZipKin To Mysql
 ~~~shell
 java -jar zipkin-server.jar --zipkin.collector.rabbitmq.addresses=192.168.134.130:5672 --zipkin.collector.rabbitmq.password=rabbit --zipkin.collector.rabbitmq.username=admin --zipkin.storage.type=mysql --zipkin.storage.mysql.username=root --zipkin.storage.mysql.password=root --zipkin.storage.mysql.host=localhost --zipkin.storage.mysql.port=3306 --zipkin.storage.mysql.db=zipkin --zipkin.storage.mysql.max-active=10
 ~~~
 
 > **zipkin-server.jar:** 是我打的 Jar 包名称
 >
-> **zipkin.collector.rabbitmq.* ** rabbitMQ 对应的连接信息
+> **zipkin.collector.rabbitmq.*** rabbitMQ 对应的连接信息
 >
-> **zipkin.storage.type: ** 使用的存储(此处使用的是 Mysql)
+> **zipkin.storage.type:** 使用的存储(此处使用的是 Mysql)
 >
-> **zipkin.storage.mysql.*：** Mysql 的数据库连接信息
+> **zipkin.storage.mysql.***： Mysql 的数据库连接信息
+
+- ZipKin To ElasticSearch
+~~~shell
+java -jar zipkin-server.jar --RABBIT_URI=amqp://admin:rabbit@192.168.158.134:5672 --zipkin.storage.type=elasticsearch --ES_HOSTS=http://192.168.158.134:9200 --ES_HTTP_LOGGING=BASIC
+~~~
+> **RABBIT_URI：** rabbitmq 的完整连接地址
+>
+> **zipkin.storage.type：** 指定存储数据的数据源
+>
+> **ES_HOSTS:** ElasticSearch 的连接地址，端口使用 http 的端口
+>
+> **ES_HTTP_LOGGING：** ElasticSearch 的 HTTP 接口日志
 
 更多配置可查看 [zipkin-server](https://mvnrepository.com/artifact/io.zipkin.zipkin2/zipkin) 中的 **zipkin-server-shared.yml** 配置就可以了
 
