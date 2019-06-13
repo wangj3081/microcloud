@@ -43,11 +43,17 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-zipkin</artifactId>
     </dependency>
-    <!--zipkin Mysql 使用-->
+    <!--zipkin 发送数据到 RabbitMq 使用-->
     <dependency>
       <groupId>org.springframework.amqp</groupId>
       <artifactId>spring-rabbit</artifactId>
     </dependency>
+
+      <!--追踪服务-->
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-sleuth</artifactId>
+      </dependency>
 
   </dependencies>
   <build>

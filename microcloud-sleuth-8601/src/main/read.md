@@ -32,6 +32,10 @@ java -jar zipkin-server.jar --RABBIT_URI=amqp://admin:rabbit@192.168.158.134:567
 > **ES_HOSTS:** ElasticSearch 的连接地址，端口使用 http 的端口
 >
 > **ES_HTTP_LOGGING：** ElasticSearch 的 HTTP 接口日志
+>
+>  当链路日志写入到 ElasticSearch 之中时，即可配合使用 Kibana 来查询链路日志，由此可提高排查问题的效率
+
+
 
 更多配置可查看 [zipkin-server](https://mvnrepository.com/artifact/io.zipkin.zipkin2/zipkin) 中的 **zipkin-server-shared.yml** 配置就可以了
 

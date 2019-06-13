@@ -14,7 +14,7 @@ spring:
       rabbit:
         enabled: true
   rabbitmq: # rabbitmq 配置
-    host: 192.168.134.130
+    host: 192.168.158.134
     port: 5672
     username: admin
     password: rabbit
@@ -33,7 +33,7 @@ spring:
         tags: version=1.0,author=code
         health-check-path: /manager/health # 为健康检查的url,由consul定时调用一次判断服务是否可用
         health-check-interval: 5s # 检查间隔时间
-        register-health-check: true # 做健康检查
+        register-health-check: false # 不做健康检查
 #        instance-id: ${spring.application.name}:${java.rmi.server.hostname}:${server.port} # 注册的服务ID
         instance-id: ${spring.application.name}:${server.port} # 注册的服务ID
         service-name: microcloud-consul # 注册的服务名称

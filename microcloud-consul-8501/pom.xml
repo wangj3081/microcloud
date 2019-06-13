@@ -34,11 +34,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <!--logstash logback 包
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+        </dependency>-->
+
+        <!--logback-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
+
+        <!--lombok 引用-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
         <!--consul 引用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -59,6 +72,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator-autoconfigure</artifactId>
         </dependency>
+
+        <!--todo 貌似是可以用来通过 zipkin 收集日志
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>-->
         <!--zipkin 链路追踪使用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -69,6 +88,13 @@
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
         </dependency>
+
+        <!--追踪服务-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -96,6 +122,18 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!--读取 maven 配置文件中的内容-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <!--使用$进行引用内容-->
+                        <delimiter>$</delimiter>
+                    </delimiters>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -27,7 +27,7 @@ spring:
       port: 8500
       discovery:
         tags: version=1.0,author=code
-        register-health-check: false  # 健康檢查, 貌似必須要有，不然只能調用一次
+        register-health-check: false  # 不做健康检查
         health-check-interval: 25s  # 检查间隔时间
         health-check-path: /manager/health # 为健康检查的url,由consul定时调用一次判断服务是否可用
         service-name: ${spring.application.name}
@@ -45,8 +45,13 @@ spring:
       messaging:
         rabbit:
           enabled: true # 通过 rabbitMQ 传递数据
+      baggage-keys:
+        - baz
+        - code
+      propagation-keys:
+        - foo
   rabbitmq: # rabbitmq 配置
-      host: 192.168.134.130
+      host: 192.168.158.134
       port: 5672
       username: admin
       password: rabbit
