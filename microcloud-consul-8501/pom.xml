@@ -73,11 +73,6 @@
             <artifactId>spring-boot-actuator-autoconfigure</artifactId>
         </dependency>
 
-        <!--todo 貌似是可以用来通过 zipkin 收集日志
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-        </dependency>-->
         <!--zipkin 链路追踪使用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -94,17 +89,37 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
-
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <environment>dev</environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <environment>test</environment>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <finalName>microcloud-consul-8501</finalName>
         <filters>
-            <filter>src/main/resources/application.yml</filter>
+            <filter>src/main/resources/config/application-${environment}.yml</filter>
         </filters>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>config/**</exclude>
+                </excludes>
                 <filtering>true</filtering>
             </resource>
         </resources>

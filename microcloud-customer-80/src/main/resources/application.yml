@@ -41,4 +41,3 @@ feign:
         readTimeout: 10000 # 获取服务返回结果超时时间，单位(毫秒)
         loggerLevel: full # feign 的Http日志级别,full 为打印所有请求日志
 
-

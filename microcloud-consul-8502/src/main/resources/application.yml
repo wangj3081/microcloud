@@ -49,7 +49,7 @@ management:
       basePath: '/manager' # 监控请求地址前缀,默认为 /actuator
 
 info:
-  app.name: ${spring.application.name}
+  app.name: "@config.logger.appname@"
   app.version: 1.0
 
 

@@ -29,8 +29,6 @@ public class ConsulController {
             log.error("「服务名称:"+serverName+",方法:echo」请求异常: 传入的参数为空");
             throw new NullPointerException("传入的参数为空");
         }
-        long traceId = tracer.currentSpan().context().traceId();
-        log.debug("traceId: " + traceId);
         log.debug("「"+serverName+"-》 echo」: result");
         return "Echo:" + message;
     }

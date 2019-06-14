@@ -82,14 +82,36 @@
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <environment>dev</environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <environment>test</environment>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <finalName>microcloud-consul-8512</finalName>
         <filters>
-            <filter>src/main/resources/application.yml</filter>
+            <filter>src/main/resources/config/application-${environment}.yml</filter>
         </filters>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>config/**</exclude>
+                </excludes>
                 <filtering>true</filtering>
             </resource>
         </resources>
