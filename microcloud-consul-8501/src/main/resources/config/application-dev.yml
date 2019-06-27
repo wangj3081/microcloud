@@ -1,1 +1,6 @@
 config.logger.appname: microcloud-consul-8501
+# 数据源配置
+spring.datasource.driverClassName: org.postgresql.Driver
+spring.datasource.url: jdbc:postgresql://192.168.158.134:5432/demo
+spring.datasource.username: postgresql
+spring.datasource.password: 123

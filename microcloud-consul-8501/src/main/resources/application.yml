@@ -46,8 +46,28 @@ spring:
           enabled: true
   profiles:
     active: dev
-
-
+    # 数据库连接配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: "@spring.datasource.driverClassName@"
+    url: "@spring.datasource.url@"
+    username: "@spring.datasource.username@"
+    password: "@spring.datasource.password@"
+    druid:
+      removeAbandoned: true
+      removeAbandonedTimeout: 2800
+      timeBetweenEvictionRunsMillis: 50000
+      minEvictableIdleTimeMillis: 200000
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+# mybatis 配置
+mybatis:
+  type-aliases-package: com.microcloud.entity.**
+  configuration:
+    cache-enabled: false # 不开启二级缓存
+  mapper-locations:
+  - classpath*:/mapper/**/*.xml
 # actuator 配置
 management:
   endpoints:
@@ -59,5 +79,6 @@ management:
 info:
   app.name: "@config.logger.appname@"
   app.version: 1.0
+
 
 #debug: true # 打印debug日志
